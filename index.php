@@ -1,5 +1,8 @@
 <?php
-define('BOT_TOKEN', '233509418:AAFvlIialCDalub4i9zyOhHqERHItOTKgVk');
+// Config 
+define('ADMIN', ''); // ex: 249010980
+define('URL_HOOK', ''); // ex: https://app-be.cleverapps.io/index.php 
+define('BOT_TOKEN', ''); // ex: 232609410:AAFflIialCDalun4i9zyOhHqER0mMtOTKgVk
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
 function apiRequestWebhook($method, $parameters) {
@@ -115,7 +118,7 @@ function processMessage($message) {
   // process incoming message
   $boolean = file_get_contents('booleans.txt');
   $booleans= explode("\n",$boolean);
-  $admin = '249010980';
+  $admin = ADMIN;
   $message_id = $message['message_id'];
   $rpto = $message['reply_to_message']['forward_from']['id'];
   $chat_id = $message['chat']['id'];
@@ -584,10 +587,8 @@ apiRequest("sendMessage", array('chat_id' => $chat_id, "text" => $pmembersiddd[1
 Choose one of the options
 ----------------------------------------------
 🔶🔸 Clean Members
-🔶🔸 Clean contact list
-
+---------------------
 🔷🔹 Clean Block List
-🔷🔹 Clean blacklist
 
 In case of cancellation Back button
 .', 'reply_markup' => array(
@@ -776,7 +777,7 @@ Severe clean your black list ⚙." ,"parse_mode" =>"HTML"));
 }
 
 
-define('WEBHOOK_URL', 'https://my-site.example.com/secret-path-for-webhooks/');
+define('WEBHOOK_URL', URL_HOOK);
 
 if (php_sapi_name() == 'cli') {
   // if run from console, set or delete webhook
